@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-vercel-app",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^8.0.0"
+  },
+  "scripts": {
+    "dev": "node server.js"
+  }
+}
