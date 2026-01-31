@@ -13,8 +13,17 @@ export default async function handler(req, res) {
   if (req.method !== "POST")
     return res.status(405).json({ message: "Method not allowed" });
 
-  await connectDB();
-  await new User(req.body).save();
+  try {
+    await connectDB();
+    console.log("Connected to DB");
 
-  res.status(200).json({ message: "Registration successful" });
+    const newUser = new User(req.body);
+    await newUser.save();
+    console.log("User saved:", newUser);
+
+    res.status(200).json({ message: "Registration successful" });
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({ message: "Registration failed", error: error.message });
+  }
 }
